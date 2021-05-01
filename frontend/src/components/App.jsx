@@ -1,16 +1,11 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import AboutPage from "./about/AboutPage";
-import HomePage from "./home/HomePage";
-
+import Layout from "./Layout/Layout";
+import CurrentBody from "./CurrentBody/CurrentBody";
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/" element={<HomePage />} />
-      </Routes>
-    </BrowserRouter>
+    <Layout>
+      <CurrentBody />
+    </Layout>
   );
 }
 
