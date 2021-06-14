@@ -22,48 +22,105 @@ function CurrentBody() {
       <div className={classes.formContainer}>
         <h1 className={classes.formHeading}>Description</h1>
         <Input
-          label="Enter your Age"
           inputtype="input"
-          type="text"
+          type="number"
           name="age"
-          placeholder="Your Age"
+          placeholder="  Age (Years)"
         />
-        <Input label="Select your Sex" inputtype="radio" values={sexes} />
+        <br />
+
         <Input
-          label="Enter your Weight"
           inputtype="input"
           type="number"
           name="weight"
-          placeholder="Your Weight (Kg)"
+          placeholder=" Weight (Kg)"
         />
+        <br />
+
         <Input
-          label="Enter your height"
           inputtype="input"
           type="number"
           name="height"
-          placeholder="Your Height (m)"
+          placeholder=" Height (M)"
         />
+        <br />
+
+        <Input label="Gender" inputtype="radio" values={sexes} />
         <div>
-          <label>Do you have a chronic disease? </label>
-          <button onClick={openDiseaseList}>Yes</button>
-          <button onClick={closeDiseaseList}>No</button>
+          <br />
+          <label className="block text-gray-400 text-lg	 font-bold mb-2">
+            Do you have a chronic disease?
+          </label>
+
+          <label
+            className="inline-flex items-center mt-3 mr-2"
+            onClick={openDiseaseList}
+          >
+            <input
+              type="radio"
+              className="form-radio h-5 w-5 text-gray-600 cursor-pointer"
+              name="disease"
+            />
+            <span className="ml-2 text-gray-700 cursor-pointer">Yes</span>
+          </label>
+
+          <label
+            className="inline-flex items-center mt-3 cursor-pointer"
+            onClick={closeDiseaseList}
+          >
+            <input
+              type="radio"
+              className="form-radio h-5 w-5 text-gray-600 "
+              name="disease"
+            />
+            <span className="ml-2 text-gray-700 cursor-pointer">No</span>
+          </label>
+          <br />
           {openedDiseasesList ? (
             <div>
-              <label for="disease1"> Diabetes</label>
-              <input type="checkbox" value="Bike" />
-              <br></br>
-              <label for="disease2"> Heart disease</label>
-              <input type="checkbox" value="Bike" />
-              <br></br>
-              <label for="disease3"> Cancer</label>
-              <input type="checkbox" value="Bike" />
-              <br></br>
+              <div className="block">
+                <div className="mt-2">
+                  <div>
+                    <label className="inline-flex items-center mt-3 mr-2">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox h-5 w-5 text-gray-600 cursor-pointer"
+                      />
+                      <span className="ml-2 text-gray-700 cursor-pointer">
+                        Diabetes
+                      </span>
+                    </label>
+                  </div>
+                  <div>
+                    <label className="inline-flex items-center mt-3 mr-2">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox h-5 w-5 text-gray-600 cursor-pointer"
+                      />
+                      <span className="ml-2 text-gray-700 cursor-pointer">
+                        Heart disease
+                      </span>
+                    </label>
+                  </div>
+                  <div>
+                    <label className="inline-flex items-center mt-3 mr-2">
+                      <input
+                        type="checkbox"
+                        className="form-checkbox h-5 w-5 text-gray-600 cursor-pointer"
+                      />
+                      <span className="ml-2 text-gray-700 cursor-pointer">
+                        Cancer
+                      </span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <br />
               <Input
-                label="Enter your diseases list"
                 inputtype="input"
                 type="text"
                 name="contagiousdiseases"
-                placeholder="Do you have any contagious diseases"
+                placeholder="Other chronic diseases..."
               />
             </div>
           ) : null}
