@@ -1,11 +1,18 @@
 import React, { useState } from "react";
-import Input from "../UI/Input/Input";
 
 function CurrentBody() {
   let sexes = ["Male", "Female", "Other"];
+  let inputElement = sexes.map((gender) => (
+    <label className="inline-flex items-center mt-3 mr-2">
+      <input
+        type="radio"
+        className="form-radio h-5 w-5 text-gray-600 cursor-pointer"
+        name="gender"
+      />
+      <span className="ml-2 text-gray-700 cursor-pointer">{gender}</span>
+    </label>
+  ));
   const [openedDiseasesList, setOpenedDiseasesList] = useState(false);
-  const [disease, setDisease] = useState("");
-
   const openDiseaseList = () => setOpenedDiseasesList(true);
   const closeDiseaseList = () => {
     setOpenedDiseasesList(false);
@@ -21,37 +28,30 @@ function CurrentBody() {
     <div className={classes.pageBody}>
       <div className={classes.formContainer}>
         <h1 className={classes.formHeading}>Description</h1>
-        <Input
-          inputtype="input"
-          type="number"
-          name="age"
-          placeholder="  Age (Years)"
-        />
-        <br />
+        <div>
+          <input type="number" name="age" placeholder="  Age (Years)" />
+        </div>
 
-        <Input
-          inputtype="input"
-          type="number"
-          name="weight"
-          placeholder=" Weight (Kg)"
-        />
         <br />
-
-        <Input
-          inputtype="input"
-          type="number"
-          name="height"
-          placeholder=" Height (M)"
-        />
+        <div>
+          <input type="number" name="weight" placeholder=" Weight (Kg)" />
+        </div>
         <br />
-
-        <Input label="Gender" inputtype="radio" values={sexes} />
+        <div>
+          <input type="number" name="height" placeholder=" Height (M)" />
+        </div>
+        <br />
+        <div>
+          <label className="block text-gray-400 text-lg	 font-bold mb-2">
+            Gender
+          </label>
+          {inputElement}
+        </div>
         <div>
           <br />
           <label className="block text-gray-400 text-lg	 font-bold mb-2">
             Do you have a chronic disease?
           </label>
-
           <label
             className="inline-flex items-center mt-3 mr-2"
             onClick={openDiseaseList}
@@ -63,7 +63,6 @@ function CurrentBody() {
             />
             <span className="ml-2 text-gray-700 cursor-pointer">Yes</span>
           </label>
-
           <label
             className="inline-flex items-center mt-3 cursor-pointer"
             onClick={closeDiseaseList}
@@ -116,12 +115,13 @@ function CurrentBody() {
                 </div>
               </div>
               <br />
-              <Input
-                inputtype="input"
-                type="text"
-                name="contagiousdiseases"
-                placeholder="Other chronic diseases..."
-              />
+              <div>
+                <input
+                  type="text"
+                  name="contagiousdiseases"
+                  placeholder="Other chronic diseases..."
+                />
+              </div>
             </div>
           ) : null}
         </div>
