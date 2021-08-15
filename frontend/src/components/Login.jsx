@@ -5,23 +5,20 @@ import { LockClosedIcon } from "@heroicons/react/solid";
 
 const Login = (props) => {
   let navigate = useNavigate();
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [user, setUser] = useState({
+    username: "",
+    password: "",
+  });
+
   const [message, setMessage] = useState("");
 
-  const onChangeUsername = (e) => {
-    const username = e.target.value;
-    setUsername(username);
-  };
-
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
+  const handleInput = (e) => {
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const handleLogin = (e) => {
     e.preventDefault();
-    AuthService.login(username, password).then(
+    AuthService.login(user).then(
       () => {
         navigate("/profile");
         window.location.reload();
@@ -56,9 +53,9 @@ const Login = (props) => {
                 id="username"
                 type="text"
                 placeholder="Username"
-                value={username}
                 name="username"
-                onChange={onChangeUsername}
+                value={user.username}
+                onChange={handleInput}
                 required
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
               />
@@ -75,8 +72,8 @@ const Login = (props) => {
                 className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
                 placeholder="Password"
                 name="password"
-                value={password}
-                onChange={onChangePassword}
+                value={user.password}
+                onChange={handleInput}
               />
             </div>
           </div>

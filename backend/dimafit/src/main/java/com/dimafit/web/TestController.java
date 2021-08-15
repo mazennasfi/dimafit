@@ -16,19 +16,19 @@ public class TestController {
 	}
 	
 	@GetMapping("/athlete")
-	@PreAuthorize("hasRole('ATHLETE') or hasRole('NUTRITIONIST') or hasRole('COACH')")
+	@PreAuthorize("hasRole('ROLE_ATHLETE') or hasRole('ROLE_NUTRITIONIST') or hasRole('ROLE_COACH')")
 	public String athleteAccess() {
 		return "ATHLETE Content.";
 	}
 
 	@GetMapping("/nutritionist")
-	@PreAuthorize("hasRole('NUTRITIONIST')")
+	@PreAuthorize("hasRole('ROLE_NUTRITIONIST')")
 	public String nutritionistAccess() {
 		return "NUTRITIONIST Board.";
 	}
 
 	@GetMapping("/coach")
-	@PreAuthorize("hasRole('COACH')")
+	@PreAuthorize("hasRole('ROLE_COACH')")
 	public String coachAccess() {
 		return "COACH Board.";
 	}
