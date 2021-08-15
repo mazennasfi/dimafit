@@ -1,6 +1,6 @@
 package com.dimafit.web;
 
-import java.util.HashSet;	
+import java.util.HashSet;		
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -63,6 +63,8 @@ public class AuthController {
 		UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
+		
+		//return ResponseEntity.ok(new JwtResponse(jwt));
 
 		return ResponseEntity.ok(
 				new JwtResponse(jwt, userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));

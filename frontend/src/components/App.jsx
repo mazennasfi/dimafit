@@ -17,6 +17,7 @@ const App = () => {
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
+  const user = AuthService.getCurrentUser();
 
   useEffect(() => {
     const user = AuthService.getCurrentUser();
@@ -159,7 +160,7 @@ const App = () => {
                               <Menu.Item>
                                 {({ active }) => (
                                   <a
-                                    href="/profile"
+                                    href={`/profile/${user.id}`}
                                     className="block px-4 py-2 text-sm text-gray-700"
                                   >
                                     {currentUser.username}
@@ -269,7 +270,11 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<Profile />} />
+
+          {user && (
+            <Route path="/profile/:id" element={<Profile userId={user.id} />} />
+          )}
+
           <Route path="/user" element={<BoardUser />} />
           <Route path="/mod" element={<BoardModerator />} />
           <Route path="/admin" element={<BoardAdmin />} />
